@@ -3,9 +3,9 @@ var tableData = data;
 
 // YOUR CODE HERE!
 // select the filter type
-var filterType = d3.select("#filter-type");
+//var filterType = d3.select("#filter-type");
 
-var filterTypeValue = d3.select("#filter-type-value");
+//var filterTypeValue = d3.select("#filter-type-value");
 
 // Select the submit button
 var submit = d3.select("#filter-btn");
@@ -39,38 +39,54 @@ tableData.forEach((alients) => {
 
 
 //function to invoke on selection of an item from dropdown
-filterType.on("change", function() {
-    var filterValue = filterType.property("value");
-    d3.select("#filtertype").node().value = '';
-    // Setting placeholder values for input text
-    switch (filterValue) {
-        case 'datetime':
-            placeHolder = '1/1/2010';
-            break;
-        case 'city':
-            placeHolder = 'city';
-            break;
-        case 'state':
-            placeHolder = 'state';
-            break;
-        case 'country':
-            placeHolder = 'country';
-            break;
-        case 'shape':
-            placeHolder = 'shape';
-            break;
-        default:
-            placeHolder = '';
-    }
-    d3.select("input").attr("placeholder", placeHolder);
-    d3.select("label")
-      .attr("for",filterValue)
-      .text(`Enter a value for  ${filterValue.toUpperCase()}`);
+// filterType.on("change", function() {
+//     //var filterValue = filterType.property("value");
+//     //d3.select("#filtertype").node().value = '';
+//     // Setting placeholder values for input text
+//     switch (filterValue) {
+//         case 'datetime':
+//             placeHolder = '1/1/2010';
+//             break;
+//         case 'city':
+//             placeHolder = 'city';
+//             break;
+//         case 'state':
+//             placeHolder = 'state';
+//             break;
+//         case 'country':
+//             placeHolder = 'country';
+//             break;
+//         case 'shape':
+//             placeHolder = 'shape';
+//             break;
+//         default:
+//             placeHolder = '';
+//     }
+//     d3.select("input").attr("placeholder", placeHolder);
+//     d3.select("label")
+//       .attr("for",filterValue)
+//       .text(`Enter a value for  ${filterValue.toUpperCase()}`);
 
     
-});
-
+//});
+function PopulateTable(){}
 // Function to invoke on clicking the filter button
+function functiononClick() {
+    var inputElement = d3.select("#filtertype").property("value");
+    if (inputValue == '') {
+        alert("Please enter a filter value!");
+        document.getElementById("#filtertype").focus();
+        autoPopulate(tableData); 
+    }
+    else {
+        var filteredData = tableData.filter(row => row["datetime"]=== inputValue)
+    }
+
+
+        //var inputValue = inputElement.property("value");
+}
+
+    
 submit.on("click", function() {
         
         // Prevent the page from refreshing
